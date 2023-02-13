@@ -1,5 +1,28 @@
 # include "biblio.h"
 
+int chercherLivreaut(T_Bibliotheque  *ptrB)
+{
+
+	int i;
+while( strcmp((ptrB->etagere[i]).titre),ptrL->auteur) != 0)
+	i++;
+if(strcmp((ptrB->etagere[i]).titre),ptrL->auteur) == 0)
+	return 1;
+else
+ 	return 0;	
+	
+	
+}
+// il faut remplacer le livre à supprimer par le dernier livre
+
+int supprimer (T_Bibliotheque  *ptrB)
+{ while( strcmp((ptrB->etagere[i]).titre),ptrL->titre) != 0)
+	i++;
+if(strcmp((ptrB->etagere[i]).titre),ptrL->titre) == 0)   
+ *ptrB=*T_tabloDeLivres[ptrB->nbLivres];
+}
+
+
 
 int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
 { int i=0, compteur=0;
