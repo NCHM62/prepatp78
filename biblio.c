@@ -43,6 +43,14 @@ if(ptrB->nbLivres==0)
 }
 
 
-
+int  chercherLivre( T_Bibliotheque  *ptrB)
+{ int i;
+while( strcmp((ptrB->etagere[i]).titre),ptrL->titre) != 0)
+	i++;
+if(strcmp((ptrB->etagere[i]).titre),ptrL->titre) == 0)
+	return 1;
+else
+ 	return 0;	
+}
 
 
