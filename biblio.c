@@ -1,6 +1,19 @@
 # include "biblio.h"
 
 
+int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
+{ int i=0, compteur=0;
+while( i < ptrB->nbLivres){
+	
+	if(strcmp((ptrB->etagere)[i].titre),titre) == 0)
+		compteur++;
+	i++;
+}
+return compteur;
+}
+
+
+
 void init (T_Bibliotheque *ptrB)
 { //hello
 
