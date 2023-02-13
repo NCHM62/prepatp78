@@ -60,6 +60,24 @@ switch(chx)
 					printf("La bibliotheque est vide");
 
 			break;	
+	case 3: reponse=chercherLivre(&B);
+			
+		if (reponse>=1)
+				printf ("le livre est dans la biblio, en %d exemplaire(s)",reponse);
+		else
+				printf("le livre n'est pas dans la biblio");
+		break;
+	case 4: reponse=chercherLivreaut(&B);
+		
+			break;
+	
+	case 5:reponse=supprimerLivre(&B);
+			if (reponse==1)
+			printf ("le livre est supprime");
+			if (reponse==0)
+			printf("le livre n'est pas supprime");
+			break;
+			
 	
 	
 	
