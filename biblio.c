@@ -56,19 +56,3 @@ if(ptrB->nbLivres==0)
 }
 
 
-int  chercherLivre( T_Bibliotheque  *ptrB)
-{ int i;
- int RepeatLivre = 0;
-while( strcmp((ptrB->etagere[i]).titre),ptrL->titre) != 0)
-	i++;
-if(strcmp((ptrB->etagere[i]).titre),ptrL->titre) == 0)
-	do{
-		RepeatLivre = RepeatLivre + 1;
-		i++;
-	}while(strcmp((ptrB->etagere[i]).titre),ptrL->titre) == 0);
-	return RepeatLivre;
-else
- 	return 0;	
-}
-
-
