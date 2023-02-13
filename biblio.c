@@ -2,7 +2,7 @@
 
 
 void init (T_Bibliotheque *ptrB)
-{
+{ //hello
 
 ptrB->nbLivres=0;
 // ou (*ptrB).nbLivres=0;
