@@ -71,18 +71,27 @@ switch(chx)
 		else
 				printf("le livre n'est pas dans la biblio");
 		break;
-	/*case 4: reponse=chercherLivreaut(&B);
+	case 4:
+		printf("\nSaisir le nom de l'auteur : ");
+		lire(auteur,60);
+		reponse=chercherLivreaut(&B,auteur);
+		
+		if (reponse>=1)
+				printf ("\nLe ou les livre(s) de l'auteur sont dans la biblio, en %d exemplaire(s)\n",reponse);
+		else
+				printf("\nLe ou les livres de l'auteur ne sont pas dans la biblio\n");
 		
 			break;
 	
-	case 5:reponse=supprimerLivre(&B);
-			if (reponse==1)
-			printf ("le livre est supprime");
-			if (reponse==0)
-			printf("le livre n'est pas supprime");
+	case 5:
+			printf("\nSaisir le titre du livre : ");
+			lire(titre,60);
+			reponse=supprimerLivre(&B,titre);
+			if (reponse>=1)
+				printf ("le livre est supprimé");
+			else (reponse==0)
+				printf("le livre n'est pas supprimé");
 			break;
-			
-	*/
 	
 	
 	
