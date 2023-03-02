@@ -87,7 +87,7 @@ int supprimerLivre(T_Bibliotheque  *ptrB, char* titre)
 }
 
 /*
-int supprimerLivre(T_Bibliotheque *ptrB)
+int supprimerLivre(T_Bibliotheque *ptrB) [code de Meryem]
 {
 
     int i = 0, cmp;
