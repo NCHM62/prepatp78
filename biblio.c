@@ -85,3 +85,37 @@ int supprimerLivre(T_Bibliotheque  *ptrB, char* titre)
 	}
 	return compteur;
 }
+
+/*
+int supprimerLivre(T_Bibliotheque *ptrB)
+{
+
+    int i = 0, cmp;
+    char M_Titre[MAX_TITRE];
+    printf("\n Quel livre?");
+    lireChaine("\n Saisir le titre du livre pour une supression. ", M_Titre, MAX_TITRE);
+    while (i != ptrB->nbLivres + 1)
+    {
+        cmp = strcmp(M_Titre, (ptrB->etagere[i].titre));
+        if (cmp == 0 && i != (ptrB->nbLivres) + 1)
+        {
+            while (i != ptrB->nbLivres)
+            {
+
+                ptrB->etagere[i] = ptrB->etagere[i + 1];
+                i++;
+            }
+            (ptrB->nbLivres)--;
+            return 1;
+        }
+        if (cmp == 0 && i == (ptrB->nbLivres) + 1)
+        {
+
+            ptrB->etagere[i] = ptrB->etagere[i + 1];
+            (ptrB->nbLivres)--;
+        }
+        i++;
+    }
+    return 0;
+}
+*/
