@@ -5,27 +5,27 @@ int menu()
 {
 	int choix;
 // au programme du TP7 :
-printf("\n\n 1 - ajouter un nouveau livre dans la bibliotheque "); 
-printf("\n 2 - afficher tous les livres de la bibliotheque "); 
-printf("\n 3 - rechercher un livre (par son titre)");  // il peut y avoir plusieurs livres de même titre. Dans ce cas, indiquez le nombre d'exemplaires disponibles
-printf("\n 4 - rechercher et afficher tous les livres d'un auteur");
-printf("\n 5 - supprimer un livre de la bibliotheque");
+printf("\n\n 1 - Ajouter un nouveau livre dans la bibliothèque "); 
+printf("\n 2 - Afficher tous les livres de la bibliothèque "); 
+printf("\n 3 - Rechercher un livre (par son titre)");  // il peut y avoir plusieurs livres de même titre. Dans ce cas, indiquez le nombre d'exemplaires disponibles
+printf("\n 4 - Rechercher et afficher tous les livres d'un auteur");
+printf("\n 5 - Supprimer un livre de la bibliothèque");
 // si les 5 choix ci dessus sont bien codés, modifiez votre structure T_Livre et passez à 5 champs (avec cote,editeur et annee)
 
 
 // au programme du TP8 :
 // ajouter le champ emprunteur à votre structure T_Livre
 /*
-printf("\n 6 - emprunter un livre de la bibliotheque");
-printf("\n 7 - restituer/rendre un livre de la bibliotheque");
-printf("\n 8 - trier les livres (par titre)");
-printf("\n 9 - trier les livres (par auteur)");
-printf("\n 10 - trier les livres (par annee)");
+printf("\n 6 - Emprunter un livre de la bibliothèque");
+printf("\n 7 - Restituer/rendre un livre de la bibliothèque");
+printf("\n 8 - Trier les livres (par titre)");
+printf("\n 9 - Trier les livres (par auteur)");
+printf("\n 10 - Trier les livres (par année)");
 */
 // si les 5 choix (6-10) sont bien codés, changez le type T_Emp et remplacez-le par la structure T_Emp visible dans livre.h
 // vous pourrez alors faire les menus 11,12,etc...
-// printf("\n 11- lister les livres disponibles "); 
-// printf("\n 12 - lister les emprunts en retard "); //on suppose qu'un emprunt dure 7 jours.
+// printf("\n 11- Lister les livres disponibles "); 
+// printf("\n 12 - Lister les emprunts en retard "); //on suppose qu'un emprunt dure 7 jours.
 // printf("\n 13 - ... imaginez vous même vos propres fonctionnalités ")
 
 printf("\n 0 - QUITTER");
@@ -42,6 +42,7 @@ int main()
 {
 int reponse,chx;
 T_Titre titre;
+T_Aut auteur;
 T_Bibliotheque B; 
 init( &B );
 
@@ -50,26 +51,26 @@ do
 chx= menu();
 switch(chx)
 	{
-	case  1 : reponse = ajouterLivre(   &B  );
+	case  1 : reponse = ajouterLivre(&B);
 				if (reponse==1)
-					printf(" ajout reussi !!");
+					printf("\n Ajout réussi !!!\n");
 					else
-					printf("impossible d ajouter (bibliotheque pleine)");
+					printf("\nImpossible d'ajouter (bibliotheque pleine)\n");
 			break;
 	case 2 : reponse=afficherBibliotheque(&B);
 			if (reponse==0)	
-					printf("La bibliotheque est vide");
+					printf("\nLa bibliotheque est vide\n");
 
 			break;	
 	case 3: 
-		printf("saisir titre :");
+		printf("\nSaisir le titre du livre : ");
 		lire(titre,60);
 		reponse=chercherLivre(&B,titre);
 			
 		if (reponse>=1)
-				printf ("le livre est dans la biblio, en %d exemplaire(s)",reponse);
+				printf ("\nLe livre est dans la biblio, en %d exemplaire(s)",reponse);
 		else
-				printf("le livre n'est pas dans la biblio");
+				printf("\nLe livre n'est pas dans la biblio");
 		break;
 	case 4:
 		printf("\nSaisir le nom de l'auteur : ");
@@ -84,13 +85,14 @@ switch(chx)
 			break;
 	
 	case 5:
+			/*supprimerLivre(&B);*/
 			printf("\nSaisir le titre du livre : ");
 			lire(titre,60);
-			reponse=supprimerLivre(&B,titre);
-			if (reponse>=1)
-				printf ("le livre est supprimé");
-			else (reponse==0)
-				printf("le livre n'est pas supprimé");
+			reponse=supprimerLivre(&B, titre);
+			if (reponse>0)
+				printf ("Le livre a été supprimé %d fois dans la bibliothéque", reponse);
+			else if(reponse==0)
+				printf("Le livre n'a pas été supprimé");
 			break;
 	
 	
@@ -108,3 +110,4 @@ switch(chx)
 return 0;
 
 }
+
