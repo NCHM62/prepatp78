@@ -1,10 +1,4 @@
-#ifndef BIBLIO_H   //compilation conditionnelle
-#define BIBLIO_H
-
-
-#include "livre.h"
-
-#define CAPACITE_BIBLIO 2 // nb maximum de livres ds la bibliotheque
+#define CAPACITE_BIBLIO 10 // nb maximum de livres ds la bibliotheque
 
 typedef  T_livre 	T_tabloDeLivres[CAPACITE_BIBLIO];
 
@@ -25,6 +19,4 @@ int  afficherBibliotheque(const T_Bibliotheque  *ptrB);
 int  chercherLivre( T_Bibliotheque  *ptrB, char* titre);
 int  chercherLivreaut( T_Bibliotheque  *ptrB, char* auteur);
 int supprimerLivre(T_Bibliotheque  *ptrB, char* titre);
-
-
 #endif
