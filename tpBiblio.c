@@ -110,6 +110,11 @@ switch(chx)
 		
 			break;
 	case 9:  reponse=tri_auteur(&B);
+			if (reponse == 1)
+					printf ("\n Tri effectuee");
+				else
+					printf ("Erreur");
+			break;
 		
 			break;
 	case 10:  reponse=tri_annee(&B);
