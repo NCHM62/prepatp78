@@ -154,6 +154,47 @@ int Rendre_Livre(T_Bibliotheque *ptrB)
 	}
 	return 0;
 }
+int tri_Titre(T_Bibliotheque *ptrB)
+{
+	T_livre aux;
+	char temp1[MAX_TITRE];
+	char temp2[MAX_TITRE];
+	int j;
+	int i;
+	for ( i = 0; i < ptrB->nbLivres; i++)
+	{
+		j = i;
+		while ((j > 0) && (strcmp(format_tri(ptrB->etagere[j - 1].titre, temp1), format_tri(ptrB->etagere[j].titre, temp2))) > 0)
+		{ 
+			aux = ptrB->etagere[j];
+			ptrB->etagere[j] = ptrB->etagere[j - 1];
+			ptrB->etagere[j - 1] = aux;
+			j--;
+		}
+	}
+	return 1;
+}
+int tri_auteur(T_Bibliotheque *ptrB)
+{T_livre aux;
+	char temp1[MAX_TITRE];
+	char temp2[MAX_TITRE];
+	int j;
+	int i;
+	for ( i = 0; i < ptrB->nbLivres; i++)
+	{
+		j = i;
+		while ((j > 0) && (strcmp(format_tri(ptrB->etagere[j - 1].auteur, temp1), format_tri(ptrB->etagere[j].auteur, temp2))) > 0)
+		{ 
+			aux = ptrB->etagere[j];
+			ptrB->etagere[j] = ptrB->etagere[j - 1];
+			ptrB->etagere[j - 1] = aux;
+			j--;
+		}
+	}
+	return 1;
+	
+	
+}
 
 void init (T_Bibliotheque *ptrB)
 { //hello
