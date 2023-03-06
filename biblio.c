@@ -1,4 +1,21 @@
 # include "biblio.h"
+void sauvegarde(T_Bibliotheque *ptrB)
+{
+FILE *fic=NULL; //le type FILE
+int i;
+fic=fopen("baseLivres","w"); // w = le mode = write avec ECRASEMENT
+//fopen renvoie NULL si probleme (disque plein, disque non accessible ...
+if (fic!=NULL)
+	{
+	for(i=0;i<ptrB->nbLivres;i++)
+		{
+//fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
+    fwrite(  &(ptrB->etagere[i])        ,sizeof(T_livre),1,fic);
+
+		}
+	fclose(fic);
+	puts("SAUVEGARDE REUSSIE ..............");
+	
 
 int ajouterLivre(T_Bibliotheque  *ptrB)
 {
