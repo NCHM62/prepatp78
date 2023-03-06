@@ -13,7 +13,66 @@ int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
 	return compteur;
 }
 
+void afficherLivreAuteur(T_Bibliotheque *ptrB)
+{
+	int comparation, i, flag = 0;
+	char auteur[MAX_TITRE];
+	lireChaine("Saisir le nom de l'auteur dont vous voulez les livres : ", auteur, MAX_TITRE);
+	for (i = 0; i < ptrB->nbLivres; i++)
+	{
+		comparation = strcmp(auteur, (ptrB->etagere[i].auteur));
+		if (comparation == 0)
+		{
+		
+			afficherLivre(&(ptrB->etagere[i]));
+			flag = 1;
+		}
+	}
+	if (flag == 0)
+	{
+		printf("Il n'y a pas de livre de cet auteur.");
+	}
+}
+int Emprunt_Livre(T_Bibliotheque *ptrB)
+{
+	char M_Code[MAX_CODE];
+	char M_Emprunteur[MAX];
+	lireChaine("Donnez le code du livre a  rechercher: ", M_Code, MAX_CODE);
+	for (int i = 0; i <= ptrB->nbLivres; i++)
+	{
+		if (!(strcmp(ptrB->etagere[i].code, M_Code)))
+		{
+			if (!(strcmp(ptrB->etagere[i].emprunteur.nomemprunteur, "")))
+			{
+				lireChaine("Donnez votre Prenom et NOM sous la forme: \"Prenom NOM\" :", M_Emprunteur, MAX);
+				strcpy(ptrB->etagere[i].emprunteur.nomemprunteur, M_Emprunteur);
 
+				return 1;
+			}
+			return -1;
+		}
+	}
+	return 0;
+}
+
+int Rendre_Livre(T_Bibliotheque *ptrB)
+{
+	char M_Code[MAX_CODE];
+	lireChaine("Donnez le code du livre a  rendre: ", M_Code, MAX_CODE);
+	for (int i = 0; i <= ptrB->nbLivres; i++)
+	{
+		if (!(strcmp(ptrB->etagere[i].code, M_Code)))
+		{
+			if (strcmp(ptrB->etagere[i].emprunteur.nomemprunteur, ""))
+			{
+				strcpy(ptrB->etagere[i].emprunteur.nomemprunteur, "");
+				return 1;
+			}
+			return -1;
+		}
+	}
+	return 0;
+}
 
 void init (T_Bibliotheque *ptrB)
 { //hello
