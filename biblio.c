@@ -1,5 +1,63 @@
 # include "biblio.h"
 
+int ajouterLivre(T_Bibliotheque  *ptrB)
+{
+	if (ptrB->nbLivres<CAPACITE_BIBLIO)// reste t il de la place?
+		{
+		saisirLivre(&(ptrB->etagere[ptrB->nbLivres]));
+		ptrB->nbLivres++;
+		return 1;
+		}
+	return 0;
+}
+
+
+int  afficherBibliotheque(const T_Bibliotheque  *ptrB)
+{
+	int i;
+	if(ptrB->nbLivres==0)
+		return 0;
+		else
+			{
+			for(i=0;i<ptrB->nbLivres;i++)
+				{
+				afficherLivre( &(ptrB->etagere[i])  );
+			
+				}
+		return 1;
+		}
+}
+
+int  chercherLivreaut( T_Bibliotheque  *ptrB, char* auteur)
+{ 
+	int i=0, compteur=0;
+	while( i < ptrB->nbLivres){
+	
+		if((strcmp(((ptrB->etagere)[i].auteur),auteur) == 0))
+			compteur++;
+		i++;
+		}
+	return compteur;
+}
+
+
+int  afficherBibliotheque(const T_Bibliotheque  *ptrB)
+{
+	int i;
+	if(ptrB->nbLivres==0)
+		return 0;
+		else
+			{
+			for(i=0;i<ptrB->nbLivres;i++)
+				{
+				afficherLivre( &(ptrB->etagere[i])  );
+			
+				}
+		return 1;
+		}
+}
+
+
 
 int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
 { 
@@ -7,6 +65,17 @@ int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
 	while( i < ptrB->nbLivres){
 	
 		if((strcmp(((ptrB->etagere)[i].titre),titre) == 0))
+			compteur++;
+		i++;
+		}
+	return compteur;
+}
+int  chercherLivreaut( T_Bibliotheque  *ptrB, char* auteur)
+{ 
+	int i=0, compteur=0;
+	while( i < ptrB->nbLivres){
+	
+		if((strcmp(((ptrB->etagere)[i].auteur),auteur) == 0))
 			compteur++;
 		i++;
 		}
@@ -32,6 +101,18 @@ void afficherLivreAuteur(T_Bibliotheque *ptrB)
 	{
 		printf("Il n'y a pas de livre de cet auteur.");
 	}
+}
+int supprimerLivre(T_Bibliotheque  *ptrB, T_Titre tit){
+	int indice,cpt;
+	cpt=rechercherLivre(ptrB,tit);
+	if(cpt==0)
+		return -1;
+	else{
+		indice=rechercherParIndice(ptrB,tit);
+		ptrB->etagere[indice]=ptrB->etagere[indice+1];
+		ptrB->nbLivres--;
+		}
+	return 0;
 }
 int Emprunt_Livre(T_Bibliotheque *ptrB)
 {
@@ -81,62 +162,6 @@ ptrB->nbLivres=0;
 // ou (*ptrB).nbLivres=0;
 }
 
-int ajouterLivre(T_Bibliotheque  *ptrB)
-{
-	if (ptrB->nbLivres<CAPACITE_BIBLIO)// reste t il de la place?
-		{
-		saisirLivre(&(ptrB->etagere[ptrB->nbLivres]));
-		ptrB->nbLivres++;
-		return 1;
-		}
-	return 0;
-}
 
 
-int  afficherBibliotheque(const T_Bibliotheque  *ptrB)
-{
-	int i;
-	if(ptrB->nbLivres==0)
-		return 0;
-		else
-			{
-			for(i=0;i<ptrB->nbLivres;i++)
-				{
-				afficherLivre( &(ptrB->etagere[i])  );
-			
-				}
-		return 1;
-		}
-}
-
-int  chercherLivreaut( T_Bibliotheque  *ptrB, char* auteur)
-{ 
-	int i=0, compteur=0;
-	while( i < ptrB->nbLivres){
-	
-		if((strcmp(((ptrB->etagere)[i].auteur),auteur) == 0))
-			compteur++;
-		i++;
-		}
-	return compteur;
-}
-
-int supprimerLivre(T_Bibliotheque  *ptrB, char* titre)
-{
-    int i = 0, nb_suppressions = 0;
-    while (i < ptrB->nbLivres) {
-        if (strcmp(ptrB->etagere[i].titre, titre) == 0) {
-            // Déplacer tous les livres suivants d'une position vers la gauche
-            for (int j = i; j < ptrB->nbLivres - 1; j++) {
-                ptrB->etagere[j] = ptrB->etagere[j + 1];
-            }
-            // Réduire le nombre total de livres dans l'étagère
-            ptrB->nbLivres--;
-            nb_suppressions++;
-        } else {
-            i++;
-        }
-    }
-    return nb_suppressions;
-}
 
