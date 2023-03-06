@@ -154,6 +154,19 @@ int Rendre_Livre(T_Bibliotheque *ptrB)
 	}
 	return 0;
 }
+char *format_tri(char titre[MAX_TITRE], char temp1[MAX_TITRE])
+{
+	strcpy(temp1, titre);
+	for (int i = 0; temp1[i] != '\0'; i++)
+	{
+		if (temp1[i] >= 'A' && temp1[i] <= 'Z')
+		{
+			temp1[i] += 32;
+		}
+	}
+
+	return temp1;
+}
 int tri_Titre(T_Bibliotheque *ptrB)
 {
 	T_livre aux;
