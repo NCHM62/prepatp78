@@ -1,4 +1,28 @@
 # include "biblio.h"
+
+void chargement(T_Bibliotheque *ptrB)
+{
+FILE *fic=NULL; //le type FILE
+int i=0;
+fic=fopen("baseLivres","r"); // r = le mode read
+//fopen renvoie NULL si probleme (disque plein, disque non accessible ...
+if (fic!=NULL)
+	{
+	do
+		{
+
+		fread(  &(ptrB->etagere[i]) ,sizeof(T_livre),1,fic);
+		i++;
+		}
+		while(!feof(fic));
+	fclose(fic);
+	ptrB->nbLivres=i-1;
+	puts("CHARGEMENT  REUSSI ..............");
+	}
+	else puts("ECHEC DE CHARGEMENT  !!!!!  ");
+
+}
+
 void sauvegarde(T_Bibliotheque *ptrB)
 {
 FILE *fic=NULL; //le type FILE
