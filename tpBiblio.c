@@ -40,6 +40,11 @@ return choix;
 
 int main()
 {
+
+//Lancer la fonction chargement au début du programme pour obtenir les données de la sauvegarde
+//chargement(&B);
+
+
 int reponse,chx;
 T_Titre titre;
 T_Aut auteur;
@@ -60,68 +65,74 @@ switch(chx)
 	case 2 : reponse=afficherBibliotheque(&B);
 			if (reponse==0)	
 					printf("\nLa bibliotheque est vide\n");
-
 			break;	
-
-	
-		case 3: reponse=chercherLivre(&B);
+	case 3: 
+		printf("\nSaisir le titre du livre : ");
+		lire(titre,60);
+		reponse=chercherLivre(&B,titre);
 			
-			if (reponse>=1)
-				printf ("le livre est dans la biblio, en %d exemplaire(s)",reponse);
-			else
-				printf("le livre n'est pas dans la biblio");
-			break;	
-			
-	case 4:  afficherLivreAuteur(&B);
+		if (reponse>=1)
+				printf ("\nLe livre est dans la biblio, en %d exemplaire(s)",reponse);
+		else
+				printf("\nLe livre n'est pas dans la biblio");
+		break;
+	case 4:
+		printf("\nSaisir le nom de l'auteur : ");
+		lire(auteur,60);
+		reponse=chercherLivreaut(&B,auteur);
+		
+		if (reponse>=1)
+				printf ("\nLe ou les livre(s) de l'auteur sont dans la biblio, en %d exemplaire(s)\n",reponse);
+		else
+				printf("\nLe ou les livres de l'auteur ne sont pas dans la biblio\n");
 		
 			break;
 	
-	case 5:lireChaine("Donnez le titre du livre a  supprimer :", titre , 100);
-		reponse = supprimerLivre(&B, titre);
-		if(reponse==-1)
-			printf(" aucun livre trouvee");
-		else
-			printf("le Livre  est supprimee");
+	case 5:
+			/*supprimerLivre(&B);*/
+			printf("\nSaisir le titre du livre : ");
+			lire(titre,60);
+			reponse=supprimerLivre(&B, titre);
+			if (reponse>0)
+				printf ("Le livre a été supprimé %d fois dans la bibliothéque", reponse);
+			else if(reponse==0)
+				printf("Le livre n'a pas été supprimé");
 			break;
-	case 6:  reponse = Emprunt_Livre(&B);
+	
+	case 6:
+			reponse = Emprunt_Livre(&B);
 				if (reponse == 1)
 					printf ("\n Emprunt est effectue !");
 				else if (reponse == 0)
 					printf ("\n Aucune correspondance code pour ce livre !");
 				else
-					printf("\nLe livre est deja  empruntee !");
-		
+					printf("\nLe livre est deja  empruntee !");
 			break;
-			
-	case 7:  	reponse = Rendre_Livre(&B);
+	
+	case 7:
+			reponse = Rendre_Livre(&B);
 				if (reponse == 1)
 					printf ("\n Rendu effectuee");
 				else if (reponse == 0)
 					printf ("\n Aucune correspondance code pour ce livre !");
 				else
-					printf("\nCe livre est deja  rendu");
-		
+					printf("\nCe livre est deja  rendu");
 			break;
-	case 8:  	reponse = tri_Titre(&B);
+			
+	case 8:
+			reponse = tri_Titre(&B);
 				if (reponse == 1)
 					printf ("\n Tri effectuee");
 				else
 					printf ("Erreur");
-		
 			break;
-	case 9:  reponse=tri_auteur(&B);
+	
+	case 9:  reponse = tri_auteur(&B);
 			if (reponse == 1)
 					printf ("\n Tri effectuee");
 				else
 					printf ("Erreur");
 			break;
-		
-			break;
-	case 10:  reponse=tri_annee(&B);
-		
-			break;
-	
-	
 	
 	}
 
@@ -129,8 +140,8 @@ switch(chx)
 
 
 
-
-
+//Mettre la fonction sauvegarder pour conserver la bibliothèque à la fin du programme
+//sauvegarde(&B);
 
 return 0;
 
