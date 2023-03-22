@@ -33,5 +33,10 @@ int Rendre_Livre(T_Bibliotheque *ptrB);
 char *format_tri(char titre[MAX_TITRE], char temp1[MAX_TITRE]);
 int tri_Titre(T_Bibliotheque *ptrB);
 int tri_auteur(T_Bibliotheque *ptrB);
-//int Rendre_Livre(T_Bibliotheque *ptrB)int Rendre_Livre(T_Bibliotheque *ptrB);
+int tri_Annee(T_Bibliotheque *ptrB);
+int livre_Dispo(T_Bibliotheque *ptrB);
+int tri_Code(T_Bibliotheque *ptrB);
+void Emprunts_en_retard(T_Bibliotheque* ptrB);
+void sauvegarde(T_Bibliotheque *ptrB);
+void chargement(T_Bibliotheque *ptrB);
 #endif
