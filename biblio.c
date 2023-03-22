@@ -1,5 +1,5 @@
 # include "biblio.h"
-
+# include <time.h>
 
 
 int  chercherLivre( T_Bibliotheque  *ptrB, char* titre)
@@ -223,3 +223,71 @@ int tri_auteur(T_Bibliotheque *ptrB)
 	}
 	return 1;
 }
+
+int tri_Annee(T_Bibliotheque *ptrB)
+{
+    T_livre aux;
+    int i, j;
+    for ( i = 0; i < ptrB->nbLivres; i++)
+    {
+        j = i;
+        while ((j > 0) && (ptrB->etagere[j - 1].annee > ptrB->etagere[j].annee))
+        { 
+            aux = ptrB->etagere[j];
+            ptrB->etagere[j] = ptrB->etagere[j - 1];
+            ptrB->etagere[j - 1] = aux;
+            j--;
+        }
+    }
+    return 1;
+}
+
+int livre_Dispo(T_Bibliotheque *ptrB)
+{
+    for (int i = 0; i < ptrB->nbLivres; i++)
+    {
+        if (!(strcmp((ptrB->etagere[i].emprunteur.nomemprunteur), "")))
+        {
+            afficherLivre(&(ptrB->etagere[i]));
+        }
+    }
+    return 1;
+}
+
+int tri_Code(T_Bibliotheque *ptrB)
+{
+    T_livre aux;
+    char temp1[MAX_TITRE];
+    char temp2[MAX_TITRE];
+    int j;
+    int i;
+    for ( i = 0; i < ptrB->nbLivres; i++)
+    {
+        j = i;
+        while ((j > 0) && (strcmp(format_tri(ptrB->etagere[j - 1].code, temp1), format_tri(ptrB->etagere[j].code, temp2))) > 0)
+        { 
+            aux = ptrB->etagere[j];
+            ptrB->etagere[j] = ptrB->etagere[j - 1];
+            ptrB->etagere[j - 1] = aux;
+            j--;
+        }
+    }
+    return 1;
+}
+
+/*void Emprunts_en_retard(T_Bibliotheque* ptrB) {
+    time_t now;
+    time(&now); // Récupérer la date et l'heure actuelles
+    struct tm* current_time = localtime(&now); // Convertir en une structure tm
+    
+    printf("Liste des livres empruntés depuis 7 jours ou plus :\n");
+    for (int i = 0; i < ptrB->nbLivres; i++) {
+        if (strcmp(ptrB->etagere[i].emprunteur.nomemprunteur, "") != 0) {
+            time_t emprunt_time = mktime(&(ptrB->etagere[i].emprunteur.(Mettre la variable qui contient la date et l'heure de l'emprunt)));
+            double difference = difftime(now, emprunt_time);
+            if (difference >= 7 * 24 * 60 * 60) { // 7 jours en secondes
+                afficherLivre(&(ptrB->etagere[i]));
+            }
+        }
+    }
+}*/
